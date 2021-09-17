@@ -37,10 +37,11 @@ public class SpecializationController {
 		return"SpecializationForm";
 	}
 	@GetMapping("/all")
-	public String getData(@ModelAttribute Specialization specialization,Model model)
+	public String getData(Model model,@RequestParam(value="message",required=false)String message)
 	{   
 		            List<Specialization> list= service.getAllData();
 		            model.addAttribute("list",list);
+		            model.addAttribute("message",message);
 		           return"SpecializationFormData";
 	}
 	@GetMapping("/delete")
@@ -65,7 +66,7 @@ public class SpecializationController {
 	{
 		     service.updateData(specialization);
 		     model.addAttribute(specialization);
-		return"redirect:data";
+		return"redirect:all";
 	}
 	
 	@ResponseBody
