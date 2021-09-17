@@ -78,11 +78,31 @@
             $("#codeError").html("*Please Enter  valid Code min 4 & Max 8 Digits");
             $("#codeError").css("color", "blue");
             codeError = false;
-          } else {
-            $("#codeError").hide();
-            codeError = true;
-          }
-
+          }else{
+	
+	     $.ajax({
+		    
+		    url:'codecheck',
+		    data:{"code":val},
+		    success:function(redData){
+			if(redData!='')
+			{
+				$("#codeError").show();
+				$("#codeError").html(redData);
+				$("#codeError").css('color','red');
+				codeError=false;
+			}
+			else
+			{
+				$("#codeError").hide();
+				codeError=true;
+			}
+			
+			
+		}
+	});
+} 
+          
           return codeError;
         }
         function validate_name() {
@@ -98,10 +118,32 @@
             $("#nameError").html("*Please Enter only <b>Small or Capital LETTERS min 4 & Max 8 Characters<b>");
             $("#nameError").css("color", "blue");
             nameError = false;
-          } else {
-            $("#nameError").hide();
-            nameError = true;
-          }
+          }else{
+	
+	$.ajax({
+		
+		url:'namecheck',
+		data:{"name":val},
+		success:function(nameData){
+			if(nameData!='')
+			{
+				$("#nameError").show();
+				$("#nameError").html(nameData);
+				$("#nameError").css('color','red');
+				nameError=false;
+				
+			}
+			
+			else
+			{
+				$("#nameError").hide();
+				nameError=true;
+				
+			}	
+		}	
+	});
+}
+          
           return nameError;
         }
         function validate_note() {

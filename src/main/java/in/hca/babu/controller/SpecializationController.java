@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.hca.babu.entity.Specialization;
@@ -65,6 +66,30 @@ public class SpecializationController {
 		     service.updateData(specialization);
 		     model.addAttribute(specialization);
 		return"redirect:data";
+	}
+	
+	@ResponseBody
+	@GetMapping("/codecheck")
+	public String codeValidate(@RequestParam String code)
+	{
+		String message="";
+		if(service.isCodeExit(code))
+		{
+			message = code+",*is Already Exit Please Enter Another Name";
+		}
+		return message;
+	}
+	
+	@ResponseBody
+	@GetMapping("/namecheck")
+	public String NameValidate(@RequestParam String name)
+	{
+		String message="";
+		if(service.isNameExit(name))
+		{
+			message= name + ",is Already Exit Please Enter Another Name";
+		}
+		   return message;
 	}
 
 }

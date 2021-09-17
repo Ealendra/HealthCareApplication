@@ -56,5 +56,27 @@ public class SpecializationServiceImpl implements SpecializationService{
 		
 		        repo.save(specialization);
 	}
+	
+	@Override
+	public boolean isCodeExit(String code) {
+		
+		         /* Integer count=repo.codeValidCount(code);
+		                  boolean exit=count>0 ? true:false;
+		                  return exit;*/
+		
+		
+		return repo.codeValidCount(code)>0;
+	}
+	@Override
+	public boolean isNameExit(String name) {
+		
+		              Integer count=repo.nameValidateCount(name);
+		                      boolean exit=count>0 ? true:false;
+		                      return exit;
+		
+		/* return repo.nameValidateCount(name)>0; */
+	}
 
+	
+	
 }

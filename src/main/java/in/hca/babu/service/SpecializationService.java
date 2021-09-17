@@ -6,10 +6,15 @@ import in.hca.babu.entity.Specialization;
 
 public interface SpecializationService {
 	
-	Integer saveSpecialData(Specialization specialization);
+	public Integer saveSpecialData(Specialization specialization);
 	
-	          List<Specialization> getAllData();
-	           void deleteData( Integer id);
-	             Specialization editData( Integer id);
-            void updateData(Specialization specialization);
+	       public List<Specialization> getAllData();
+	          public  void deleteData( Integer id);
+	             public Specialization editData( Integer id);
+           public void updateData(Specialization specialization);
+           /* AJAX VALIDATION METHOD*/
+           public boolean isCodeExit(String code);
+           
+           public boolean isNameExit(String name);
+           
 }
