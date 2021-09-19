@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.hca.babu.entity.Specialization;
+import in.hca.babu.excel.SpecializationExcelExport;
 import in.hca.babu.service.SpecializationService;
 
 @Controller
@@ -91,6 +93,18 @@ public class SpecializationController {
 			message= name + ",is Already Exit Please Enter Another Name";
 		}
 		   return message;
+	}
+	
+	@GetMapping("/excel")
+	public ModelAndView exportExcelSheet()
+	{
+		ModelAndView m=new ModelAndView();
+		m.setView(new SpecializationExcelExport());
+		 List<Specialization> list= service.getAllData();
+		 m.addObject("list",list);
+		 return m;
+		
+		
 	}
 
 }
