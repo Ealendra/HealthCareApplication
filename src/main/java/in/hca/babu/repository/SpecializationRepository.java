@@ -9,7 +9,7 @@ import in.hca.babu.entity.Specialization;
 @Repository
 public interface SpecializationRepository extends JpaRepository<Specialization,Integer>{
 
-	@Query("SELECT COUNT(code) FROM Specialization WHERE code=:code")
+	@Query("SELECT COUNT(code) FROM Specialization WHERE code=:code AND id!=:id")
 	public Integer codeValidCount(String code);
 	
 	@Query("SELECT COUNT(name) FROM Specialization WHERE name=:name")

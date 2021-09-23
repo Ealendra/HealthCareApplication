@@ -1,0 +1,53 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-info text-white text-center">
+                <h2>Welcome to Patient Data</h2>
+            </div>
+            <div class="card-body">
+                <form action="#" method="POST">
+                    <table class="table table-hover">
+                        <tr class="bg-info text-center text-white">
+                            <th>Image</th>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Gender</th>
+                            <th>Marial Status</th>
+                            <th>Prasent Address</th>
+                            <th>Communication Address</th>
+                            <th>Note</th>
+                            <th>Operations</th>
+                        </tr>
+                        <tr th:each="ob:${list}" class="text-center">
+                        <td><img th:src="${ob.photoLoc}" width="50" hight="60"/></td>
+                            <td th:text="${ob.id}"></td>
+                            <td th:text="${ob.firstName}"></td>
+                            <td th:text="${ob.lastName}"></td>
+                            <td th:text="${ob.gender}"></td>
+                            <td th:text="${ob.marialStatus}"></td>
+                            <td th:text="${ob.prasentAddr}"></td>
+                            <td th:text="${ob.commanAddr}"></td>
+                            <td th:text="${ob.note}"></td>
+                            <td>
+                                <a th:href="@{/patient/delete(id=${ob.id})}" class="btn btn-info">DELETE</a>
+                                <a th:href="@{/patient/edit(id=${ob.id})}" class="btn btn-info">EDIT</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div th:if="${message!=null}" class="card-footer text-white text-center bg-info">
+                <span th:text="${message}"></span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

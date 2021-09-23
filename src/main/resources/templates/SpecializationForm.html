@@ -48,10 +48,9 @@
               </div>
               <div class="col-4"><span id="noteError"></span></div>
             </div>
-            <input type="submit" value="CREATE"  class="btn btn-danger"/>
+            <input type="submit" value="CREATE"  class="btn btn-danger"/><a th:href="@{/special/excel}"class="btn btn-warning">DOWNLOAD EXCEL SHEET</a>
           </form>
           <div th:text="${message}"></div>
-          <a th:href="@{/special/excel}" class="btn btn-primary">DOWNLOAD EXCEL SHEET</a>
         </div>
         <div th:if="${message!=null}" class="card-footer bg-peimary text-center text-white"><h5><span th:text="${message}"></span></h5></div>
       </div>
@@ -80,11 +79,17 @@
             $("#codeError").css("color", "blue");
             codeError = false;
           }else{
+	     var id=0;
+	     if($("#id").val!=undefined)
+	     {
+	     codeError=true;
+	     id=$("#id").val();
+	     }
 	
 	     $.ajax({
 		    
 		    url:'codecheck',
-		    data:{"code":val},
+		    data:{"code":val,"id":id},
 		    success:function(redData){
 			if(redData!='')
 			{

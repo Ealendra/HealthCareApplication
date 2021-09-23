@@ -1,0 +1,98 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .row {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-info text-white text-center">
+                <h2>Welcome to Edit Page</h2>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/patient/update}" method="POST" th:object="${patient}">
+                    <div class="row">
+                        <div class="col-2"><label for="id">Id</label></div>
+                        <div class="col-6"><input type="text" th:field="*{id}" id="id" placeholder="Enter First Name"
+                                class="form-control" readonly></div>
+                        <div class="col-4"><span id="idError"></span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"><label for="firstName">First Name</label></div>
+                        <div class="col-6"><input type="text" th:field="*{firstName}" id="firstName"
+                                placeholder="Enter First Name" class="form-control"></div>
+                        <div class="col-4"><span id="firstNameError"></span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"><label for="lastName"></label></div>
+                        <div class="col-6"><input type="text" th:field="*{lastName}" id="lastName"
+                                placeholder="Enter Last Name" class="form-control"></div>
+                        <div class="col-4"><span id="lastNameError"></span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"><label for="gender">Gender</label></div>
+                        <div class="col-6"><input type="radio" th:field="*{gender}" value="Male" id="gender1"> Male
+                            <input type="radio" th:field="*{gender}" value="Female" id="gender2"> Female
+                            <input type="radio" th:field="*{gender}" value="Others" id="gender3"> Others
+                            <div class="col-4"><span id="genderError"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="row p-1">
+                        <div class="col-2">
+                            <!--  <label for="gender">Gender</label> -->Marital Status
+                        </div>
+                        <div class="col-6"><input type="radio" th:field="*{marialStatus}" value="Married"
+                                id="marialStatus1" />Married
+                            <input type="radio" th:field="*{marialStatus}" value="Unarried"
+                                id="marialStatus2" />Unmarried<br>
+                            <input type="radio" th:field="*{marialStatus}" value="Widowed" id="marialStatus3" />Widowed
+                            <input type="radio" th:field="*{marialStatus}" value="Divorced"
+                                id="marialStatus4" />Divorced
+                        </div>
+                        <div class="col-4"><span id="marialStatusError"></span>
+                        </div>
+
+                        <div class="col-4"><span id="genderError"></span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"><label for="prasentAddr">Prasent Address</label></div>
+                        <div class="col-6"><textarea th:field="*{prasentAddr}" id="prasentAddr"
+                                placeholder="Enter Prasent Address" class="form-control"></textarea></div>
+                        <div class="col-4"><span id="prasentAddrError"></span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"><label for="commanAddr">Communication Address</label></div>
+                        <div class="col-6"><textarea th:field="*{commanAddr}" id="commanAddr"
+                                placeholder="Enter Communication Address" class="form-control"></textarea></div>
+                        <div class="col-4"><span id="commanAddrError"></span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"><label for="note">Note</label></div>
+                        <div class="col-6"><textarea th:field="*{note}" id="note" placeholder="Enter Note"
+                                class="form-control"></textarea></div>
+                        <div class="col-4"><span id="note"></span></div>
+                    </div>
+  <div class="row">
+    <div class="col-2"><label for="photoLoc">Image</label></div>
+    <div class="col-6"><textarea th:field="*{photoLoc}" id="note" placeholder="Upload Image"
+     class="form-control"></textarea></div>
+      <div class="col-4"><span id="photoLocError"></span></div>
+       </div>
+                    
+                    <button class="btn btn-info">UPDATE</button>
+                </form>
+            </div>
+            <div th:if="${message!=null}" class="card-footer bg-info text-center text-white"><span
+                    th:text="${message}"></span></div>
+        </div>
+    </div>
+</body>
+
+</html>
