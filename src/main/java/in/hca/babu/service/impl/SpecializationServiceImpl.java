@@ -1,6 +1,8 @@
 package in.hca.babu.service.impl;
 
+
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Service;
 import in.hca.babu.entity.Specialization;
 import in.hca.babu.repository.SpecializationRepository;
 import in.hca.babu.service.SpecializationService;
+import in.hca.babu.util.MyCollectionsUtil;
+
 @Service
 public class SpecializationServiceImpl implements SpecializationService{
 	@Autowired
@@ -76,7 +80,16 @@ public class SpecializationServiceImpl implements SpecializationService{
 		
 		/* return repo.nameValidateCount(name)>0; */
 	}
-
+	
+     /*MODULE INTEGRATION LIST CONVERT TO MAP BY USING MYCOLLECTION*/
+	@Override
+	public Map<Integer, String> getIDAndName() {
+		
+		 List<Object[]> list=repo.getIdName();
+		Map<Integer,String> map = MyCollectionsUtil.convertToMap(list);
+          
+		return map;
+	}
 	
 	
 }

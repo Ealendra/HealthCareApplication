@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -35,4 +37,10 @@ public class Doctor {
      private String gender;
      @Column(name="doc_note_col")
      private String note;
+     @Column(name="doc_img_col")
+     private String photoLoc;
+     
+     @ManyToOne
+     @JoinColumn(name="doc_id_fk_col")
+     private Specialization specialization;
 }

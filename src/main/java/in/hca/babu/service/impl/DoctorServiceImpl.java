@@ -39,7 +39,7 @@ public class DoctorServiceImpl implements DoctorService{
 	@Override
 	public Doctor editDoctor(Integer id) {
 		
-	 repo.findById(id).orElseThrow(
+	return repo.findById(id).orElseThrow(
 			    ()-> new DoctorNotFoundException(id+", Not Found"));
 	    /*if(dor.isPresent())
 	    {
@@ -47,7 +47,7 @@ public class DoctorServiceImpl implements DoctorService{
 	          return doctor;
 	    }*/
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 	@Override
 	public void updateDoctor(Doctor doctor) {

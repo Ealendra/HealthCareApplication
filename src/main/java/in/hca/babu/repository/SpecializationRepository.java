@@ -1,5 +1,7 @@
 package in.hca.babu.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -14,5 +16,9 @@ public interface SpecializationRepository extends JpaRepository<Specialization,I
 	
 	@Query("SELECT COUNT(name) FROM Specialization WHERE name=:name")
 	public Integer nameValidateCount(String name);
+	
+	@Query("SELECT id,name FROM Specialization")
+	public List<Object[]> getIdName();
+	
 	
 }

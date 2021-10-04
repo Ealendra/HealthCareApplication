@@ -44,6 +44,28 @@
                         </div>
                     </div>
 
+                         <div class="row">
+                        <div class="col-2"><label for="phone">Phone Number</label></div>
+                        <div class="col-6"><input type="text" th:field="*{phone}" id="phone" placeholder="Enter Mobile Number"
+                                class="form-control"></div>
+                        <div class="col-4"><span id="phoneError"></span></div>
+                      </div>
+
+
+                    <div class="row">
+                        <div class="col-2"><label for="dateOfBirth">Date OF Birth</label></div>
+                        <div class="col-6"><input type="date" th:field="*{dateOfBirth}" id="dateOfBirth"
+                                placeholder="Select Date Of Birth" class="form-control"></div>
+                        <div class="col-4"><span id="dateOfBirthError"></span></div>
+                    </div>
+
+
+
+
+
+
+
+
                     <div class="row p-1">
                         <div class="col-2">
                             <!--  <label for="gender">Gender</label> -->Marital Status
@@ -74,11 +96,41 @@
                         <div class="col-4"><span id="commanAddrError"></span></div>
                     </div>
                     <div class="row">
+                    
+                     <div class="row">
+                        <div class="col-2"><label for="medicalHistory">Medical History</label></div>
+                        <div class="col-6"><input type="checkbox" th:field="*{medicalHistory}" value="Anemia" id="Anemia"> Anemia
+                            <input type="checkbox" th:field="*{medicalHistory}" value="Asthma" id="Asthma"> Asthma
+                            <input type="checkbox" th:field="*{medicalHistory}" value="Diabetes" id="Diabetes"> Diabetes <br>
+                            <input type="checkbox" th:field="*{medicalHistory}" value="Cancer" id="Cancer"> Cancer
+                            <input type="checkbox" th:field="*{medicalHistory}" value="Ulcer" id="Ulcer">Ulcer
+                            <div class="col-4"><span id="medicalHistoryError"></span></div>
+                        </div>
+                    </div>
+        
+     <div class="row">
+    <div class="col-2">
+        <label for="ifOther">IF Other History
+            <input type="checkbox" th:field="*{mediHistory}" id="mediHistory5" value="ifOther"/>
+        </label>
+    </div>
+    <div class="col-4">
+        <input type="text" th:field="*{ifOther}" id="ifOther" class="form-control" placeholder="Enter Medical History"  />
+    </div>
+    <div class="col-6">
+        <span id="mediHistoryError"></span>
+    </div>
+</div>
+                    
+                    
+                    
+                    
                         <div class="col-2"><label for="note">Note</label></div>
                         <div class="col-6"><textarea th:field="*{note}" id="note" placeholder="Enter Note"
                                 class="form-control"></textarea></div>
                         <div class="col-4"><span id="note"></span></div>
                     </div>
+                    
   <div class="row">
     <div class="col-2"><label for="photoLoc">Image</label></div>
     <div class="col-6"><textarea th:field="*{photoLoc}" id="note" placeholder="Upload Image"

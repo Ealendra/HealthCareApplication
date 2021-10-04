@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    </head>
+    <body>
+        <input type="file" name="fileOb" id="fileOb" accept="image/*" onchange="uploadFile()"/>
+        <input type="text" id="imagePage2" />
+        <img id="imagePage" width="200" height="300"/>
+        <script type="text/javascript">
+            function uploadFile() {
+               var file = document.getElementById("fileOb");
+               var form = new FormData();
+               form.append("image",file.files[0]);
+               var inputs = {
+                    url : 'https://api.imgbb.com/1/upload?key=ccb7b3a8ac518313479e7c4b1b912e0a',
+                    method : "POST",
+                    timeout : 0,
+                    processData : false,
+                    mimeType : "multipart/form-data",
+                    contentType : false,
+                    data : form
+               };
+
+               $.ajax(inputs).done(function (response) {
+                   var job = JSON.parse(response);
+                   $("#imagePage").attr('src',job.data.url);
+                   $("#imagePage2").val(job.data.url);
+               });
+
+            }
+        </script>
+    </body>
+</html>

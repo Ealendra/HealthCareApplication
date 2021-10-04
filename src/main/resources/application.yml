@@ -11,3 +11,35 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  mail:    
+    host: smtp.gmail.com
+    port: 587
+    username: myact5050@gmail.com
+    password: Myact5041
+    properties:
+     mail:
+      smtp:
+       starttls:
+        enable: true   
+    
+    
+    
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: myact5050@gmail.com
+#    password: myact5041
+#    properties:
+#     mail:
+#      smtp: 
+#       starttls:
+#        enable: true 
+    
+    
+    
+    
+    
+    
+    
+    
+    

@@ -3,6 +3,7 @@ package in.hca.babu.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,17 +18,28 @@ import in.hca.babu.entity.Doctor;
 import in.hca.babu.excel.DoctorExcelExport;
 import in.hca.babu.exception.DoctorNotFoundException;
 import in.hca.babu.service.DoctorService;
+import in.hca.babu.service.SpecializationService;
+import in.hca.babu.util.MyMailUtil;
 
 @Controller
 @RequestMapping("/doctor")
 public class DoctorController {
 	@Autowired
 	private DoctorService service;
+	//Has-A RELATION WITH CHAILD SERVICE
+	@Autowired
+	private  SpecializationService specializationServices;
+	 //HAS-A RELATION WITH MYMAILUTILITY
+	@Autowired
+	private MyMailUtil mailUtil;
+	
 	
 	@GetMapping("/show")
 	public String viewPage(@RequestParam(value="message",required=false)String message,Model model)
 	{
 		model.addAttribute("message",message);
+		moduleIntegration(model);
+
 		return"DoctorRegister";
 	}
 	
@@ -35,8 +47,19 @@ public class DoctorController {
 	public String SaveData(@ModelAttribute Doctor doctor,RedirectAttributes attributes)
 	{
 		Integer id=service.saveDoctor(doctor);
-		//String message="Doctor '"+id+"'is Created";
 		attributes.addAttribute("message","Doctor("+id+")is Created");
+		//MyMailUtil Code.... 
+		String message="Doctor '"+id+"'is Created";
+		attributes.addAttribute("message",message);
+		if(id!=null)
+		{
+new Thread(new Runnable() 
+{public void run() 
+{mailUtil.send(doctor.getEmail(),"SUCCESS", message,
+new ClassPathResource("/static/myres/sample.pdf"));}}).start();
+//END MYMAILUTIL CODE...
+		}
+		
 		return"redirect:show";
 	}
   @GetMapping("/all")
@@ -76,6 +99,7 @@ public class DoctorController {
 	  {
 		  Doctor doctor=service.editDoctor(id);
 		  model.addAttribute("doctor",doctor);
+		  moduleIntegration(model); /*INTEGRATION METHOD*/
 		  return"DoctorEdit";
 	  }catch(DoctorNotFoundException e) {
 		  e.printStackTrace();
@@ -101,4 +125,32 @@ public class DoctorController {
 	  m.addObject("list",list);
 	  return m;
   }
+  /*
+   * Integeration Metod
+   */
+  private void moduleIntegration(Model model)
+  {
+	  /*
+	   *  Map<Integer,String> map = specializationService.getIdAndName();
+	   * 
+	   *   model.AddAttribute("map",map)
+	   *    return map;
+	   * 
+	   * */  
+	  
+model.addAttribute("specializationses",specializationServices.getIDAndName() );
+	  
+  }
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }

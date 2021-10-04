@@ -51,9 +51,11 @@ public class PatientController {
 	@GetMapping("/delete")
 	public String deletePage(@RequestParam Long id,RedirectAttributes attributes)
 	{
+	
 		service.deletePatient(id);
 		//String message="Doctor'"+id+"' is Deleted Successfully";
 		attributes.addAttribute("message","Patient Record ("+id+") is Deleted SuccessFully");
+		
 		return"redirect:all";
 	}
 	@GetMapping("/edit")
@@ -68,7 +70,7 @@ public class PatientController {
 	{
 		service.updatePatient(patient);
 		//String message="Patient'"+patient+"'is successfully";
-		attributes.addAttribute("message","Patient("+patient+")is Updated Successfully");
+		attributes.addAttribute("message","Patient("+patient.getId()+")is Updated Successfully");
 		return"redirect:all";
 	}
 	@GetMapping("/excelfile")
@@ -88,7 +90,7 @@ public class PatientController {
 		String message="";
 		if(service.isfirstNameExit(firstName))
 		{
-			message=firstName+"is Already Exit Please Enter Enother Name";
+			message=firstName +" ,is Already Exit Please Enter Enother Name";
 		}
 		return message;
 	}
@@ -100,7 +102,7 @@ public class PatientController {
 		String message="";
 		if(service.isLastNameExit(lastName))
 		{
-			message=lastName+",is Already Exit Please Enter Another Name";
+			message=lastName +", is Already Exit Please Enter Another Name";
 		}
 		return message;
 	}
