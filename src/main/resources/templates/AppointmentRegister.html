@@ -1,0 +1,57 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+<style>
+    .row{padding: 8px;}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+<div class="card-header bg-info text-center text-white"><h2>Welcome To Appointment Register Page</h2></div>
+<div class="card-body">
+    <form th:action="@{/appointment/save}" method="POST" >
+    
+    <div class="row">
+<div class="col-2"><label for="doctor">DOCTOR NAMES</label></div>
+<div class="col-6"><select name="doctor.id" id="doctor" class="form-control">
+<option value="">---SELECT---</option>
+<option th:each="ob:${doctors}" th:value="${ob.key}" th:text="${ob.value}"></option>
+
+</select>
+</div>
+<div class="col-4"><span id="dateError"></span></div>
+</div>
+    
+<div class="row">
+<div class="col-2"><label for="date">DATE</label></div>
+<div class="col-6"><input type="date" name="date" id="date" class="form-control"></div>
+<div class="col-4"><span id="dateError"></span></div>
+</div>
+<div class="row">
+    <div class="col-2"><label for="noOfSlots">NO OF SLOTS</label></div>
+    <div class="col-6"><input type="text" name="noOfSlots" id="noOfSlots" class="form-control"></div>
+    <div class="col-4"><span id="noOfSlotsError"></span></div>
+</div>
+<div class="row">
+<div class="col-2"><label for="note">DETAILS</label></div>
+<div class="col-6"><input type="text" name="note" id="note" class="form-control"></div>
+<div class="col-4"><span id="noteError"></span></div>
+</div>
+<div class="row">
+<div class="col-2"><label for="consultFee">CONSULTATION FEES</label></div>
+<div class="col-6"><input type="text" name="consultFee" id="consultFee" class="form-control"></div>
+<div class="col-4"><span id="consultFeeError"></span></div>
+</div>
+<button class="btn btn-success"><i class="fas fa-plus-square"> </i> CREATE</button>
+    </form>
+</div>
+<div th:if="${message!=null}" class="card-footer bg-info text-center text-white"><span th:text="${message}"></span></div>
+    </div>
+</div>
+</body>
+</html>

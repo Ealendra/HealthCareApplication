@@ -49,6 +49,7 @@ public class Patient {
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 	
+	@Column(name="patient_marial_status_col")
 	private String marialStatus;
 	@Column(name="patent_paddr_col")
 	private String prasentAddr;

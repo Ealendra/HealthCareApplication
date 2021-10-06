@@ -14,5 +14,15 @@ collect(Collectors.toMap(ob->Integer.valueOf(ob[0].toString()),ob->ob[1].toStrin
 		return map;
 	}
 
+	public static Map<Integer, String> convertToMapIndex(List<Object[]> list) {
+		
+	Map<Integer,String> map=list.stream().collect(Collectors.toMap(ob->Integer.valueOf(ob[0].toString()),
+	ob->ob[1].toString()+" "+ob[2].toString()));
+		
+	
+		return map;
+	}
+	
+
 
 }

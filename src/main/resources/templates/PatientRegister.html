@@ -19,7 +19,7 @@
                 <h2>Welcome to Patient Register</h2>
             </div>
             <div class="card-body">
-                <form th:action="@{/Patient/save}" method="POST" id="reg">
+                <form th:action="@{/patient/save}" method="POST" id="reg">
                     <div class="row">
                         <div class="col-2"><label for="firstName">First Name</label></div>
                         <div class="col-6"><input type="text" name="firstName" id="firstName"
@@ -50,18 +50,16 @@
                     <div class="row">
                         <div class="col-2"><label for="dateOfBirth">Date OF Birth</label></div>
                         <div class="col-6"><input type="date" name="dateOfBirth" id="dateOfBirth"
-                                placeholder="Select Date Of Birth" class="form-control"></div>
+                                              class="form-control"></div>
                         <div class="col-4"><span id="dateOfBirthError"></span></div>
                     </div>
 
-                    <div class="row p-1">
-                        <div class="col-2">
-                            <!--  <label for="gender">Gender</label> -->Marital Status
-                        </div>
-                        <div class="col-6"><input type="radio" name="marialStatus" value="Married" id="marialStatus1" />Married
-                            <input type="radio" name="marialStatus" value="Unarried" id="marialStatus2" />Unmarried<br>
-                            <input type="radio" name="marialStatus" value="Widowed" id="marialStatus3" />Widowed
-                            <input type="radio" name="marialStatus" value="Divorced" id="marialStatus4" />Divorced
+                    <div class="row">
+                        <div class="col-2"><label>Marial Status</label></div>
+                        <div class="col-6"><input type="radio" name="marialStatus" value="Married" id="marialStatus1"/> Married
+                            <input type="radio" name="marialStatus" value="Unarried" id="marialStatus2" /> Unmarried
+                            <input type="radio" name="marialStatus" value="Widowed" id="marialStatus3" /> Widowed
+                            <input type="radio" name="marialStatus" value="Divorced" id="marialStatus4" /> Divorced
                         </div>
                         <div class="col-4"><span id="marialStatusError"></span>
                         </div>

@@ -1,6 +1,7 @@
 package in.hca.babu.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import in.hca.babu.entity.Doctor;
 import in.hca.babu.exception.DoctorNotFoundException;
 import in.hca.babu.repository.DoctorRepository;
 import in.hca.babu.service.DoctorService;
+import in.hca.babu.util.MyCollectionsUtil;
 
 @Service
 public class DoctorServiceImpl implements DoctorService{
@@ -57,5 +59,13 @@ public class DoctorServiceImpl implements DoctorService{
 		       repo.save(doctor);	
 		else
 			throw new DoctorNotFoundException(doctor.getId()+"Not Exit"); 
+	}
+	
+	@Override
+	public Map<Integer, String> getIdAndName() {
+		
+		       List<Object[]> list = repo.getIdName();
+		       
+		return MyCollectionsUtil.convertToMapIndex(list);
 	}
 }
