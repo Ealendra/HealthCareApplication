@@ -1,4 +1,4 @@
-package in.hca.babu.repository;
+ package in.hca.babu.repository;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ public interface SpecializationRepository extends JpaRepository<Specialization,I
 	@Query("SELECT COUNT(name) FROM Specialization WHERE name=:name")
 	public Integer nameValidateCount(String name);
 	
+	// Integration Method B/w Specialization and Doctor..
 	@Query("SELECT id,name FROM Specialization")
 	public List<Object[]> getIdName();
 	

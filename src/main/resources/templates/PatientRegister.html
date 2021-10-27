@@ -1,22 +1,16 @@
 <html xmlns:th="https://www.thymeleaf.org/">
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-    <style>
-        .row {
-            padding: 5px;
-        }
-    </style>
+   <div th:replace="fragments/commonui :: header"></div>
 </head>
 
 <body>
+<div th:replace="fragments/commonui :: menu"></div>
     <div class="container">
         <div class="card">
             <div class="card-header bg-info text-center text-white">
                 <h2>Welcome to Patient Register</h2>
+                <a th:href="@{/patient/all}" class="text-white text-uppercase">Patient Data</a> | <a th:href="@{/special/show}" class="text-white text-uppercase text-warning" >Click TO GO Back Special Register</a>
             </div>
             <div class="card-body">
                 <form th:action="@{/patient/save}" method="POST" id="reg">
@@ -46,6 +40,14 @@
                                 class="form-control"></div>
                         <div class="col-4"><span id="phoneError"></span></div>
                     </div>
+
+<div class="row">
+                        <div class="col-2"><label for="email">Email</label></div>
+                        <div class="col-6"><input type="text" name="email" id="email" placeholder="Enter Email Id"
+                                class="form-control"></div>
+                        <div class="col-4"><span id="emailError"></span></div>
+                    </div>
+
 
                     <div class="row">
                         <div class="col-2"><label for="dateOfBirth">Date OF Birth</label></div>

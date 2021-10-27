@@ -55,4 +55,9 @@ public class AppointmentServiceImpl implements AppointmentService {
 		repo.save(appointment);
 		
 	}
+	@Override
+	public List<Object[]> bookAppointmentByDocId(Integer id) {
+		
+		return repo.bookAppointmentByDocId(id);
+	}
 }

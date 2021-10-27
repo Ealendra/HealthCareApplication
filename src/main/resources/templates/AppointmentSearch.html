@@ -1,0 +1,47 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<div th:replace="/fragments/commonui :: header"></div>
+</head>
+
+<body>
+<div th:replace="/fragments/commonui :: menu"></div>
+<form th:action="@{/appointment/view}">
+<div class="container">
+<div class="card">
+<div class="card-header bg-info text-white text-center"><h3>Welcome To Doctor Search</h3></div>
+<div class="card-body">
+<div class="row">
+<div class="col-2"><label>Specialization</label></div>
+<div class="col-6"><select name="id" id="id" class="form-control">
+<option value="0">--View All Doctors--</option>
+<option th:each="ob:${map}" th:value="${ob.key}" th:text="${ob.value}"></option>
+</select></div>
+<div class="col-4"><button class="btn btn-info">Search</button></div>
+</div>
+<table class="table table-hover">
+<tr class="bg-info text-center">
+<th>DOCTOR ID</th>
+<th>DOCTOR NAME</th>
+<th>DOCTOR SPECIALIZATION</th>
+<th>DOCTOR EMAIL</th>
+<th>DOCTOR PHONE</th>
+<th>DOCTOR NOTE</th>
+<th>DOCTOR OPERATION</th>
+</tr>
+<tr th:each="ob:${list}" class="text-center text-white bg-info">
+<td>[[${ob.id}]]</td>
+<td>[[${ob.firstName+''+ob.lastName}]]</td>
+<td>[[${ob.specialization.name}]]</td>
+<td>[[${ob.email}]]</td>
+<td>[[${ob.mobile}]]</td>
+<td>[[${ob.note}]]</td>
+<td><a th:href="@{/appointment/viewslots(id=${ob.id})}" class="btn btn-secondary">Book</a></td>
+</tr>
+</table>
+</div>
+<div class="card-footer text-center">[[${message}]]</div>
+</div>
+</div>
+</form>
+</body>
+</html>

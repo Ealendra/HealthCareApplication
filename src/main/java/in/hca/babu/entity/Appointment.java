@@ -29,7 +29,7 @@ public class Appointment {
 	@GeneratedValue(strategy =GenerationType.IDENTITY)//auto
 	@Column(name="app_id_col")
 	private  Integer id;
-	@DateTimeFormat(iso =ISO.DATE)
+	@DateTimeFormat(pattern="mm/dd/yyyy")
 	@Temporal(TemporalType.DATE)
 	@Column(name="app_date_col")
 	private Date date;

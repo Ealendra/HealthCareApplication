@@ -1,6 +1,7 @@
 package in.hca.babu.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import in.hca.babu.entity.Appointment;
+import in.hca.babu.entity.Doctor;
+import in.hca.babu.excel.MyAppointmentExcel;
 import in.hca.babu.service.AppointmentService;
 import in.hca.babu.service.DoctorService;
+import in.hca.babu.service.SpecializationService;
 
 @Controller
 @RequestMapping("/appointment")
@@ -26,8 +31,12 @@ public class AppointmentController {
 	@Autowired
 	private DoctorService doctorService;
 	
+	//2.Over Ride the Specialization Service.
+	@Autowired
+	private SpecializationService specialService;
+	
 	/** Create One Method For reusability for Module Integration. 
-	 * and Over Ride this method at Save method && Edit method*/
+	 * and Over Ride this method at Register method && Edit method*/
 
 	private void dynamicDocNames(Model model)
 	{
@@ -88,4 +97,48 @@ public class AppointmentController {
 	      
 		return"redirect:all";
 	}
+	
+	/**Excel Method*/
+	@GetMapping("/excel")
+	public ModelAndView appExcel()
+	{
+		ModelAndView m=new ModelAndView();
+		m.setView(new MyAppointmentExcel());
+		List<Appointment> list=service.getAllData();
+		m.addObject("list",list);
+		return m;
+	}
+	
+	//..View AppointMent Page..
+	        @GetMapping("/view")
+	        public String viewDoctors(@RequestParam(required=false,defaultValue="0")Integer id,Model model)
+	        {
+	        Map<Integer,String> map = specialService.getIDAndName();
+	        model.addAttribute("map",map);
+	        List<Doctor> list=null;
+	        String message=null;
+	        if(id<=0)
+	        {
+	                  list=doctorService.getDoctor();
+	                  message="All Doctors";
+	        }
+	        else
+	        {
+	        	list=doctorService.findDoctorBySpecId(id);
+	        	message="Result :"+specialService.editData(id)+"Doctors";
+	        	
+	        }
+	        model.addAttribute("list",list);
+	        model.addAttribute("message", message);
+	        	return"AppointmentSearch";
+	        }
+	        @GetMapping("/viewslots")
+	        public String bookAppointment(@RequestParam Integer id,Model model)
+	        {
+	        List<Object[]> list = service.bookAppointmentByDocId(id);
+	        model.addAttribute("list", list);
+	          String message="Result :"+doctorService.editDoctor(id).getFirstName();
+	        	model.addAttribute("message", message);
+	        	return"AppointSlots";
+	        }
 }

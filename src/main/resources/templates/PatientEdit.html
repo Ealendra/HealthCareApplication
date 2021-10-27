@@ -1,15 +1,11 @@
 <html xmlns:th="https://www.thymeleaf.org/">
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-        .row {
-            padding: 5px;
-        }
-    </style>
+    <div th:replace="fragments/commonui :: header"></div>
 </head>
 
 <body>
+<div th:replace="fragments/commonui :: menu"></div>
     <div class="container">
         <div class="card">
             <div class="card-header bg-info text-white text-center">
@@ -51,6 +47,13 @@
                         <div class="col-4"><span id="phoneError"></span></div>
                       </div>
 
+                      <div class="row">
+                        <div class="col-2"><label for="email">Email Id</label></div>
+                        <div class="col-6"><input type="text" name="email" id="email" placeholder="Enter Email Id"
+                                class="form-control"></div>
+                        <div class="col-4"><span id="emailError"></span></div>
+                        </div>
+
 
                     <div class="row">
                         <div class="col-2"><label for="dateOfBirth">Date OF Birth</label></div>
@@ -58,14 +61,6 @@
                                 placeholder="Select Date Of Birth" class="form-control"></div>
                         <div class="col-4"><span id="dateOfBirthError"></span></div>
                     </div>
-
-
-
-
-
-
-
-
                     <div class="row p-1">
                         <div class="col-2">
                             <!--  <label for="gender">Gender</label> -->Marital Status
@@ -95,8 +90,7 @@
                                 placeholder="Enter Communication Address" class="form-control"></textarea></div>
                         <div class="col-4"><span id="commanAddrError"></span></div>
                     </div>
-                    <div class="row">
-                    
+                                    <!--Communication Address End-->  
                      <div class="row">
                         <div class="col-2"><label for="medicalHistory">Medical History</label></div>
                         <div class="col-6"><input type="checkbox" th:field="*{medicalHistory}" value="Anemia" id="Anemia"> Anemia
@@ -111,33 +105,29 @@
      <div class="row">
     <div class="col-2">
         <label for="ifOther">IF Other History
-            <input type="checkbox" th:field="*{mediHistory}" id="mediHistory5" value="ifOther"/>
+            <input type="checkbox" th:field="*{medicalHistory}" id="medicalHistory5" value="ifOther"/>
         </label>
     </div>
     <div class="col-4">
-        <input type="text" th:field="*{ifOther}" id="ifOther" class="form-control" placeholder="Enter Medical History"  />
+        <input type="text" th:field="*{ifOthers}" id="ifOthers" placeholder="Enter Medical History" class="form-control"/>
     </div>
     <div class="col-6">
         <span id="mediHistoryError"></span>
     </div>
-</div>
-                    
-                    
-                    
-                    
-                        <div class="col-2"><label for="note">Note</label></div>
+</div>                 
+<div class="row">
+  <div class="col-2"><label for="note">Note</label></div>
                         <div class="col-6"><textarea th:field="*{note}" id="note" placeholder="Enter Note"
                                 class="form-control"></textarea></div>
                         <div class="col-4"><span id="note"></span></div>
                     </div>
                     
-  <div class="row">
+ <div class="row">
     <div class="col-2"><label for="photoLoc">Image</label></div>
-    <div class="col-6"><textarea th:field="*{photoLoc}" id="note" placeholder="Upload Image"
+    <div class="col-6"><textarea th:field="*{photoLoc}" id="photoLoc" placeholder="Upload Image"
      class="form-control"></textarea></div>
       <div class="col-4"><span id="photoLocError"></span></div>
        </div>
-                    
                     <button class="btn btn-info">UPDATE</button>
                 </form>
             </div>
@@ -146,5 +136,4 @@
         </div>
     </div>
 </body>
-
 </html>

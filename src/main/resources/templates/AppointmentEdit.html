@@ -1,18 +1,9 @@
-<html>
+<html th:xmlns="https://www.thymeleaf.org/">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+   <div th:replace="fragments/commonui :: header"></div>
 </head>
-<body>
-
-
-    <style>
-        .row{padding: 8px;}
-    </style>
-    </head>
     <body>
+    <div th:replace="fragments/commonui :: menu"></div>
     <div class="container">
         <div class="card">
     <div class="card-header bg-info text-center text-white"><h2>Welcome To Appointment Edit Page</h2></div>

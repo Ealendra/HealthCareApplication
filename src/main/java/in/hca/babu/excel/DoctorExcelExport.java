@@ -10,10 +10,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.servlet.view.document.AbstractXlsxStreamingView;
+import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
 import in.hca.babu.entity.Doctor;
 
-public class DoctorExcelExport extends AbstractXlsxStreamingView {
+public class DoctorExcelExport extends AbstractXlsxView {
 
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model,
@@ -23,7 +24,7 @@ public class DoctorExcelExport extends AbstractXlsxStreamingView {
 					throws Exception {
 		
 		
-	response.addHeader("contect-Disposition", "attachment;filename=Doctor.xlsx");
+	response.addHeader("content-Disposition", "attachment;filename=Doctor.xlsx");
 	     @SuppressWarnings("unchecked")
 		List<Doctor> list=(List<Doctor>)model.get("list");
 	        Sheet sheet= workbook.createSheet("Doctor");

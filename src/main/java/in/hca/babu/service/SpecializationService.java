@@ -21,8 +21,8 @@ public interface SpecializationService {
            public boolean isCodeExit(String code);
            
            public boolean isNameExit(String name);
-           /*MODULE INTEGRATION METHOD*/
            
+           /*MODULE INTEGRATION METHOD*/
            Map<Integer,String> getIDAndName();
           
            
